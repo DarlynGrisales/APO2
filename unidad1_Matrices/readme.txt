@@ -17,7 +17,7 @@ public class TablaTem {
             }
         }
         
-        
+    
         System.out.printf("%-10s", "Fila");
         for (String ciudad : ciudades) {
             System.out.printf("%-15s", ciudad);
