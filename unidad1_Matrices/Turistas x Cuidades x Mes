@@ -8,7 +8,7 @@ public class Turismo {
 
         for (int i = 0; i < turistas.length; i++) {
             for (int j = 0; j < turistas[i].length; j++) {
-                turistas[i][j] = 100 + random.nextInt(401); // Genera números entre 100 y 500
+                turistas[i][j] = 100 + random.nextInt(401);
             }
         }
 
