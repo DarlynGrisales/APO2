@@ -1,13 +1,12 @@
 import java.util.Random;
 
 public class Turismo {
-    
+
     public static void main(String[] args) {
-        // Crear la matriz para turistas
         int[][] turistas = new int[12][4];
         Random random = new Random();
 
-        
+       
         for (int i = 0; i < turistas.length; i++) {
             for (int j = 0; j < turistas[i].length; j++) {
                 turistas[i][j] = 100 + random.nextInt(401); // Genera números entre 100 y 500
@@ -25,91 +24,54 @@ public class Turismo {
         String[] ciudades = {"Cali", "Medellín", "Bogotá", "Barranquilla"};
         String[] meses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
 
-        System.out.print("         ");
-        for (String mes : meses) {
-            System.out.printf("%-10s", mes);
+  
+        System.out.print("          ");
+        for (String ciudad : ciudades) {
+            System.out.printf("%-15s", ciudad);
         }
         System.out.println();
 
         for (int i = 0; i < matriz.length; i++) {
-            System.out.printf("%-10s", ciudades[i]);
+            System.out.printf("%-10s", meses[i]);
             for (int j = 0; j < matriz[i].length; j++) {
-                System.out.printf("%-10d", matriz[i][j]);
+                System.out.printf("%-15d", matriz[i][j]);
             }
             System.out.println();
         }
     }
 
-  
     public static void printResults(int[][] turistas) {
         String[] ciudades = {"Cali", "Medellín", "Bogotá", "Barranquilla"};
         String[] meses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
 
-        for (int i = 0; i < turistas.length; i++) {
+ 
+        for (int j = 0; j < turistas[0].length; j++) {
             int maxMes = 0;
             int mesConMasTuristas = 0;
-            for (int j = 0; j < turistas[i].length; j++) {
+            for (int i = 0; i < turistas.length; i++) {
                 if (turistas[i][j] > maxMes) {
                     maxMes = turistas[i][j];
-                    mesConMasTuristas = j;
+                    mesConMasTuristas = i;
                 }
             }
-            System.out.println("En " + ciudades[i] + ", el mes con más turistas es " + meses[mesConMasTuristas] + " con " + maxMes + " turistas.");
+            System.out.println("En " + ciudades[j] + ", el mes con más turistas es " + meses[mesConMasTuristas] + " con " + maxMes + " turistas.");
+        }
+
+        int[] totalPorCiudad = new int[turistas[0].length];
+        for (int j = 0; j < turistas[0].length; j++) {
+            int totalTuristas = 0;
+            for (int i = 0; i < turistas.length; i++) {
+                totalTuristas += turistas[i][j];
+            }
+            totalPorCiudad[j] = totalTuristas;
         }
 
         int maxTuristas = 0;
         int ciudadConMasTuristas = 0;
-        for (int i = 0; i < turistas.length; i++) {
-            int totalTuristas = 0;
-            for (int j = 0; j < turistas[i].length; j++) {
-                totalTuristas += turistas[i][j];
-            }
-            if (totalTuristas > maxTuristas) {
-                maxTuristas = totalTuristas;
-                ciudadConMasTuristas = i;
-            }
-        }
-        System.out.println("La ciudad con más visitantes durante todo el año es " + ciudades[ciudadConMasTuristas] + " con un total de " + maxTuristas + " turistas.");
-    }
-}
-
-
-      
-
-        turistas[0] = new int[]{100, 120, 130, 110, 90, 80, 75, 85, 100, 110, 120, 130}; // Cali
-        turistas[1] = new int[]{150, 160, 170, 140, 130, 120, 110, 100, 90, 80, 70, 60}; // Medellín
-        turistas[2] = new int[]{200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300, 310}; // Bogotá
-        turistas[3] = new int[]{80, 90, 85, 95, 100, 105, 110, 115, 120, 125, 130, 135}; // Barranquilla
-
-        printResults(turistas);
-    }
-
-    public static void printResults(int[][] turistas) {
-        String[] ciudades = {"Cali", "Medellín", "Bogotá", "Barranquilla"};
-        String[] meses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
-
-        for (int i = 0; i < turistas.length; i++) {
-            int maxMes = 0;
-            int mesConMasTuristas = 0;
-            for (int j = 0; j < turistas[i].length; j++) {
-                if (turistas[i][j] > maxMes) {
-                    maxMes = turistas[i][j];
-                    mesConMasTuristas = j;
-                }
-            }
-            System.out.println("El mes con más turistas en " + ciudades[i] + " es " + meses[mesConMasTuristas] + " con " + maxMes + " turistas.");
-        }
-
-        int maxTuristas = 0;
-        int ciudadConMasTuristas = 0;
-        for (int i = 0; i < turistas.length; i++) {
-            int totalTuristas = 0;
-            for (int j = 0; j < turistas[i].length; j++) {
-                totalTuristas += turistas[i][j];
-            }
-            if (totalTuristas > maxTuristas) {
-                maxTuristas = totalTuristas;
-                ciudadConMasTuristas = i;
+        for (int j = 0; j < totalPorCiudad.length; j++) {
+            if (totalPorCiudad[j] > maxTuristas) {
+                maxTuristas = totalPorCiudad[j];
+                ciudadConMasTuristas = j;
             }
         }
         System.out.println("La ciudad con más visitantes durante todo el año es " + ciudades[ciudadConMasTuristas] + " con un total de " + maxTuristas + " turistas.");
